@@ -18,11 +18,11 @@ export function Hero({ storeName }: { storeName: string }) {
     offset: ['start start', 'end start'],
   });
 
-  const cloudsOpacity = useTransform(scrollYProgress, HERO_SCROLL_RANGE, CLOUDS_OPACITY_RANGE);
-  const cloudsY = useTransform(scrollYProgress, HERO_SCROLL_RANGE, CLOUDS_TRANSLATE_RANGE);
-  const cloudsScale = useTransform(scrollYProgress, HERO_SCROLL_RANGE, CLOUDS_SCALE_RANGE);
-  const titleOpacity = useTransform(scrollYProgress, HERO_SCROLL_RANGE, TITLE_OPACITY_RANGE);
-  const titleY = useTransform(scrollYProgress, HERO_SCROLL_RANGE, TITLE_TRANSLATE_RANGE);
+  const cloudsOpacity = useTransform(scrollYProgress, [...HERO_SCROLL_RANGE], [...CLOUDS_OPACITY_RANGE]);
+  const cloudsY = useTransform(scrollYProgress, [...HERO_SCROLL_RANGE], [...CLOUDS_TRANSLATE_RANGE]);
+  const cloudsScale = useTransform(scrollYProgress, [...HERO_SCROLL_RANGE], [...CLOUDS_SCALE_RANGE]);
+  const titleOpacity = useTransform(scrollYProgress, [...HERO_SCROLL_RANGE], [...TITLE_OPACITY_RANGE]);
+  const titleY = useTransform(scrollYProgress, [...HERO_SCROLL_RANGE], [...TITLE_TRANSLATE_RANGE]);
 
   return (
     <section ref={heroRef} className="relative h-[200vh]">
