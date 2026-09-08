@@ -1,5 +1,5 @@
 import { Header } from '@/components/Header';
-import { Hero } from '@/components/Hero';
+import { Manifesto } from '@/components/Manifesto';
 import { Categories } from '@/components/Categories';
 import { ProductGrid } from '@/components/ProductGrid';
 import { Editorial } from '@/components/Editorial';
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Header storeName={STORE_NAME} />
-      <Hero storeName={STORE_NAME} />
+      <Manifesto />
       <Categories />
       <ProductGrid />
       <Editorial />

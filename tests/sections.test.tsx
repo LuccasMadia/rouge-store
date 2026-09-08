@@ -1,8 +1,18 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { Manifesto } from '@/components/Manifesto';
 import { Editorial } from '@/components/Editorial';
 import { Newsletter } from '@/components/Newsletter';
 import { Footer } from '@/components/Footer';
+
+describe('Manifesto', () => {
+  it('renders the same background layers as the hero and the CTA', () => {
+    render(<Manifesto />);
+    expect(screen.getByTestId('manifesto-bg')).toBeInTheDocument();
+    expect(screen.getByTestId('manifesto-clouds')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /entrar na coleção/i })).toBeInTheDocument();
+  });
+});
 
 describe('Editorial', () => {
   it('renders the about heading', () => {
