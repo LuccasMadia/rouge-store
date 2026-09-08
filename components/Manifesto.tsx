@@ -1,13 +1,10 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import {
-  HERO_SCROLL_RANGE,
-  CLOUDS_OPACITY_RANGE,
-  CLOUDS_TRANSLATE_RANGE,
-  CLOUDS_SCALE_RANGE,
-} from '@/lib/scrollAnimation';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import { HERO_SCROLL_RANGE, CLOUDS_OPACITY_RANGE, CLOUDS_SCALE_RANGE } from '@/lib/scrollAnimation';
+
+const BRAND_DISPLAY_MS = 1800;
 
 function Dove({ className }: { className?: string }) {
   return (
@@ -92,31 +89,43 @@ const DOVES: DoveConfig[] = [
   },
 ];
 
-export function Manifesto() {
+export function Manifesto({ storeName }: { storeName: string }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
 
+  const [showBrand, setShowBrand] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowBrand(false), BRAND_DISPLAY_MS);
+    return () => clearTimeout(timer);
+  }, []);
+
   const skyOpacity = useTransform(scrollYProgress, [...HERO_SCROLL_RANGE], [...CLOUDS_OPACITY_RANGE]);
-  const skyY = useTransform(scrollYProgress, [...HERO_SCROLL_RANGE], [...CLOUDS_TRANSLATE_RANGE]);
+  const skySecondaryOpacity = useTransform(skyOpacity, (value) => value * 0.45);
   const skyScale = useTransform(scrollYProgress, [...HERO_SCROLL_RANGE], [...CLOUDS_SCALE_RANGE]);
 
   return (
     <section ref={sectionRef} className="relative h-[200vh]">
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
-        <div
-          data-testid="manifesto-bg"
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-bg.png')" }}
-        />
+        <motion.div className="absolute inset-0" style={{ scale: skyScale }}>
+          <div
+            data-testid="manifesto-bg"
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/images/hero-bg.png')" }}
+          />
 
-        <motion.div className="absolute inset-0" style={{ opacity: skyOpacity, y: skyY, scale: skyScale }}>
           <motion.div
             data-testid="manifesto-clouds"
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/images/hero-clouds.png')", mixBlendMode: 'screen', scale: 1.15 }}
+            style={{
+              backgroundImage: "url('/images/hero-clouds.png')",
+              mixBlendMode: 'screen',
+              opacity: skyOpacity,
+              scale: 1.15,
+            }}
             animate={{
               scale: [1.15, 1.25, 1.15],
               x: ['0%', '2.5%', '-1.5%', '0%'],
@@ -128,8 +137,13 @@ export function Manifesto() {
           <div className="absolute inset-0" style={{ transform: 'scaleX(-1)' }}>
             <motion.div
               aria-hidden="true"
-              className="absolute inset-0 bg-cover bg-center opacity-45"
-              style={{ backgroundImage: "url('/images/hero-clouds.png')", mixBlendMode: 'screen', scale: 1.25 }}
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: "url('/images/hero-clouds.png')",
+                mixBlendMode: 'screen',
+                opacity: skySecondaryOpacity,
+                scale: 1.25,
+              }}
               animate={{
                 scale: [1.25, 1.35, 1.25],
                 x: ['0%', '-3%', '2%', '0%'],
@@ -139,52 +153,76 @@ export function Manifesto() {
               transition={{ duration: 47, repeat: Infinity, ease: 'easeInOut' }}
             />
           </div>
-        </motion.div>
 
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%)' }}
-        />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{ background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.22) 100%)' }}
+          />
 
-        <motion.div className="absolute inset-0" style={{ opacity: skyOpacity, y: skyY, scale: skyScale }}>
-          {DOVES.map((dove, index) => (
-            <div key={index} className={dove.wrapperClass} style={dove.flip ? { transform: 'scaleX(-1)' } : undefined}>
-              <motion.div
-                animate={{
-                  x: [0, dove.driftX, 0],
-                  y: [0, dove.driftY, 0],
-                  rotate: [dove.baseRotate - 4, dove.baseRotate + 4, dove.baseRotate - 4],
-                }}
-                transition={{ duration: dove.duration, repeat: Infinity, ease: 'easeInOut', delay: dove.delay }}
-              >
-                <Dove className={`h-full w-full ${dove.doveClass}`} />
-              </motion.div>
-            </div>
-          ))}
+          <motion.div className="absolute inset-0" style={{ opacity: skyOpacity }}>
+            {DOVES.map((dove, index) => (
+              <div key={index} className={dove.wrapperClass} style={dove.flip ? { transform: 'scaleX(-1)' } : undefined}>
+                <motion.div
+                  animate={{
+                    x: [0, dove.driftX, 0],
+                    y: [0, dove.driftY, 0],
+                    rotate: [dove.baseRotate - 4, dove.baseRotate + 4, dove.baseRotate - 4],
+                  }}
+                  transition={{ duration: dove.duration, repeat: Infinity, ease: 'easeInOut', delay: dove.delay }}
+                >
+                  <Dove className={`h-full w-full ${dove.doveClass}`} />
+                </motion.div>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
 
         <div className="relative flex flex-col items-center px-8 text-center">
-          <span className="mb-5 text-xs uppercase tracking-[0.5em] text-bone/70">
-            Rouge Apresenta
-          </span>
-          <h2 className="leading-none text-bone">
-            <span className="block font-serif text-4xl italic font-light md:text-6xl">
-              Moda com
-            </span>
-            <span className="mt-2 block font-sans text-5xl font-black uppercase tracking-wide md:text-8xl">
-              Propósito
-            </span>
-          </h2>
-          <p className="mt-8 max-w-md text-sm leading-relaxed text-bone/80 md:text-base">
-            Peças pensadas para quem veste sua fé com elegância, todos os dias.
-          </p>
-          <a
-            href="#colecao"
-            className="mt-10 rounded-full border border-bone/60 px-8 py-3 text-xs uppercase tracking-[0.3em] text-bone transition-colors hover:bg-bone hover:text-ink"
-          >
-            Entrar na Coleção
-          </a>
+          <AnimatePresence mode="wait">
+            {showBrand ? (
+              <motion.span
+                key="brand"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
+                className="font-serif text-6xl uppercase tracking-[0.2em] text-bone md:text-8xl"
+              >
+                {storeName}
+              </motion.span>
+            ) : (
+              <motion.div
+                key="content"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
+                className="flex flex-col items-center"
+              >
+                <span className="mb-5 text-xs uppercase tracking-[0.5em] text-bone/70">
+                  Rouge Apresenta
+                </span>
+                <h2 className="leading-none text-bone">
+                  <span className="block font-serif text-4xl italic font-light md:text-6xl">
+                    Moda com
+                  </span>
+                  <span className="mt-2 block font-sans text-5xl font-black uppercase tracking-wide md:text-8xl">
+                    Propósito
+                  </span>
+                </h2>
+                <p className="mt-8 max-w-md text-sm leading-relaxed text-bone/80 md:text-base">
+                  Peças pensadas para quem veste sua fé com elegância, todos os dias.
+                </p>
+                <a
+                  href="#colecao"
+                  className="mt-10 rounded-full border border-bone/60 px-8 py-3 text-xs uppercase tracking-[0.3em] text-bone transition-colors hover:bg-bone hover:text-ink"
+                >
+                  Entrar na Coleção
+                </a>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

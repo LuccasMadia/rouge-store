@@ -6,11 +6,16 @@ import { Newsletter } from '@/components/Newsletter';
 import { Footer } from '@/components/Footer';
 
 describe('Manifesto', () => {
-  it('renders the same background layers as the hero and the CTA', () => {
-    render(<Manifesto />);
+  it('shows the brand name first, then swaps to the manifesto content', async () => {
+    render(<Manifesto storeName="ROUGE" />);
     expect(screen.getByTestId('manifesto-bg')).toBeInTheDocument();
     expect(screen.getByTestId('manifesto-clouds')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /entrar na coleção/i })).toBeInTheDocument();
+    expect(screen.getByText('ROUGE')).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /entrar na coleção/i })).not.toBeInTheDocument();
+
+    expect(
+      await screen.findByRole('link', { name: /entrar na coleção/i }, { timeout: 4000 }),
+    ).toBeInTheDocument();
   });
 });
 

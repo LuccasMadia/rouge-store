@@ -5,7 +5,7 @@ export type Category = {
 };
 
 export const CATEGORIES: Category[] = [
-  { slug: 'feminino', title: 'Feminino', imageUrl: '/images/placeholder-feminino.svg' },
-  { slug: 'masculino', title: 'Masculino', imageUrl: '/images/placeholder-masculino.svg' },
-  { slug: 'acessorios', title: 'Acessórios', imageUrl: '/images/placeholder-acessorios.svg' },
+  { slug: 'feminino', title: 'Feminino', imageUrl: '/images/feminino.webp' },
+  { slug: 'masculino', title: 'Masculino', imageUrl: '/images/masculino.webp' },
+  { slug: 'acessorios', title: 'Acessórios', imageUrl: '/images/acessorios.webp' },
 ];

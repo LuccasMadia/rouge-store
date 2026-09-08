@@ -3,7 +3,7 @@ export function Editorial() {
     <section id="sobre" className="grid items-center gap-12 bg-ink px-8 py-24 md:grid-cols-2">
       <div className="aspect-[4/5] overflow-hidden bg-smoke/10">
         <img
-          src="/images/placeholder-feminino.svg"
+          src="/images/editorial.webp"
           alt="Sobre a Rouge"
           className="h-full w-full object-cover"
         />

@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Header storeName={STORE_NAME} />
-      <Manifesto />
+      <Manifesto storeName={STORE_NAME} />
       <Categories />
       <ProductGrid />
       <Editorial />
