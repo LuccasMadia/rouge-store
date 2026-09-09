@@ -3,7 +3,7 @@ import { ImagePreloader } from '@/components/ImagePreloader';
 
 export function Categories() {
   return (
-    <section id="colecao" className="grid grid-cols-1 bg-ink md:grid-cols-3">
+    <section id="colecao" className="grid grid-cols-1 bg-bone md:grid-cols-3">
       {CATEGORIES.map((category) => (
         <a
           key={category.slug}
