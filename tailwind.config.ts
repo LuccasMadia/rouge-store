@@ -5,11 +5,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: '#0a0a0a',
-        crimson: '#7a0e14',
-        'crimson-light': '#a11d1d',
-        bone: '#f5f2ef',
-        smoke: '#8a8a8a',
+        ink: '#2b2420',
+        crimson: '#c1592f',
+        'crimson-light': '#d97a4f',
+        bone: '#f7f1e8',
+        smoke: '#6b6058',
+        sand: '#e3c9b4',
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'serif'],
