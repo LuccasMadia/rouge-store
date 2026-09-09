@@ -1,12 +1,12 @@
 import { Header } from '@/components/Header';
 import { Manifesto } from '@/components/Manifesto';
 import { Categories } from '@/components/Categories';
-import { CollectionSection } from '@/components/CollectionSection';
+import { CategorySection } from '@/components/CategorySection';
 import { Editorial } from '@/components/Editorial';
 import { Newsletter } from '@/components/Newsletter';
 import { Footer } from '@/components/Footer';
 import { STORE_NAME } from '@/lib/constants';
-import { COLLECTIONS } from '@/lib/collections';
+import { CATEGORIES } from '@/lib/categories';
 
 export default function Home() {
   return (
@@ -15,8 +15,8 @@ export default function Home() {
       <Manifesto storeName={STORE_NAME} />
       <Categories />
       <div id="produtos">
-        {COLLECTIONS.map((collection) => (
-          <CollectionSection key={collection.slug} collection={collection} />
+        {CATEGORIES.map((category) => (
+          <CategorySection key={category.slug} category={category} />
         ))}
       </div>
       <Editorial />
