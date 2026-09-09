@@ -193,7 +193,7 @@ export function Manifesto({ storeName }: { storeName: string }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.8, ease: 'easeInOut' }}
-                className="font-serif text-6xl uppercase tracking-[0.2em] text-bone md:text-8xl"
+                className="font-serif text-6xl uppercase tracking-[0.2em] text-ink md:text-8xl"
               >
                 {storeName}
               </motion.span>
@@ -206,23 +206,23 @@ export function Manifesto({ storeName }: { storeName: string }) {
                 transition={{ duration: 0.8, ease: 'easeInOut' }}
                 className="flex flex-col items-center"
               >
-                <span className="mb-5 text-xs uppercase tracking-[0.5em] text-bone/70">
+                <span className="mb-5 text-xs uppercase tracking-[0.5em] text-ink/70">
                   Rouge Apresenta
                 </span>
-                <h2 className="leading-none text-bone">
+                <h2 className="leading-none text-ink">
                   <span className="block font-serif text-4xl italic font-light md:text-6xl">
                     Moda com
                   </span>
-                  <span className="mt-2 block font-sans text-5xl font-black uppercase tracking-wide md:text-8xl">
+                  <span className="mt-2 block font-sans text-4xl font-semibold uppercase tracking-wide md:text-6xl">
                     Propósito
                   </span>
                 </h2>
-                <p className="mt-8 max-w-md text-sm leading-relaxed text-bone/80 md:text-base">
+                <p className="mt-8 max-w-md text-sm leading-relaxed text-ink/80 md:text-base">
                   Peças pensadas para quem veste sua fé com elegância, todos os dias.
                 </p>
                 <a
                   href="#colecao"
-                  className="mt-10 rounded-full border border-bone/60 px-8 py-3 text-xs uppercase tracking-[0.3em] text-bone transition-colors hover:bg-bone hover:text-ink"
+                  className="mt-10 rounded-full border border-ink/60 px-8 py-3 text-xs uppercase tracking-[0.3em] text-ink transition-colors hover:bg-ink hover:text-bone"
                 >
                   Entrar na Coleção
                 </a>
