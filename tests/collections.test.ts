@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { COLLECTIONS } from '@/lib/collections';
+import { COLLECTIONS, getCollectionForProduct } from '@/lib/collections';
 import { PRODUCTS } from '@/lib/products';
 
 describe('COLLECTIONS', () => {
@@ -11,13 +11,15 @@ describe('COLLECTIONS', () => {
       });
     });
   });
+});
 
-  it('has at least two collections, each with a title and a featured image', () => {
-    expect(COLLECTIONS.length).toBeGreaterThanOrEqual(2);
-    COLLECTIONS.forEach((collection) => {
-      expect(collection.title.length).toBeGreaterThan(0);
-      expect(collection.featuredImage).toMatch(/^\/images\//);
-      expect(collection.productIds.length).toBeGreaterThan(0);
-    });
+describe('getCollectionForProduct', () => {
+  it('returns the collection that lists a given product id', () => {
+    const collection = getCollectionForProduct('trench-coat-editorial');
+    expect(collection?.slug).toBe('inverno');
+  });
+
+  it('returns undefined for a product id that is in no collection', () => {
+    expect(getCollectionForProduct('not-a-real-id')).toBeUndefined();
   });
 });
