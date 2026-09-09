@@ -1,11 +1,15 @@
 export function Editorial() {
   return (
     <section id="sobre" className="grid items-center gap-12 bg-bone px-8 py-24 md:grid-cols-2">
-      <div className="aspect-[4/5] overflow-hidden bg-smoke/10">
+      <div className="relative aspect-[4/5] w-full">
         <img
-          src="/images/editorial.webp"
+          src="/images/editorial-destaque.jpg"
           alt="Sobre a Rouge"
-          className="h-full w-full object-cover"
+          className="absolute -top-[10%] left-1/2 h-[124%] w-[110%] -translate-x-1/2 object-cover object-top"
+          style={{
+            maskImage: 'linear-gradient(to bottom, transparent 0%, black 16%, black 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 16%, black 100%)',
+          }}
         />
       </div>
       <div>
