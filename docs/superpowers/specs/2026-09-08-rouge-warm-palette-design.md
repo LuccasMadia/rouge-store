@@ -35,8 +35,14 @@ Substitui os 4 tokens atuais em `tailwind.config.ts` e adiciona 1 novo:
 | `crimson` | `#7a0e14` | `#c1592f` | accent terracota (antes vermelho) |
 | `crimson-light` | `#a11d1d` | `#d97a4f` | variante clara do accent |
 | `bone` | `#f5f2ef` | `#f7f1e8` | agora é cor de **fundo** claro (antes era texto) |
-| `smoke` | `#8a8a8a` | `#9c8f83` | neutro, tom mais quente |
+| `smoke` | `#8a8a8a` | `#6b6058` | neutro, tom mais quente |
 | `sand` *(novo)* | — | `#e3c9b4` | secundário suave (faixas, hover, detalhes) |
+
+`smoke` é usado como cor de **texto** em vários lugares (preço do produto,
+legenda do footer, placeholder do formulário). Um tom claro como `#9c8f83`
+sobre o novo fundo `bone` (`#f7f1e8`) dá contraste ~2.8:1, abaixo do mínimo de
+acessibilidade (4.5:1 para texto normal). `#6b6058` dá ~5.4:1, passando em AA,
+mantendo o mesmo viés quente.
 
 Paleta validada com o usuário via preview lado a lado de 3 opções (Creme &
 Terracota / Areia & Rosa / Off-white & Azul); "Creme & Terracota" foi a
@@ -52,6 +58,12 @@ elemento (backgrounds, texto, bordas, placeholders, estados hover).
 
 `crimson` continua reservado para detalhes de destaque (ex.: fundo sutil da
 seção Newsletter, hover de botão), não para blocos grandes.
+
+Exceção deliberada: o overlay escuro sobre as fotos de categoria
+(`components/Categories.tsx`, `bg-ink/30` + `text-bone` no título por cima da
+imagem) **não** faz parte do flip — é um scrim para legibilidade de texto
+sobre foto (funciona com foto clara ou escura), não o fundo da página, e
+continua escuro com texto claro por cima da imagem.
 
 ## Hero (`components/Manifesto.tsx`)
 
@@ -84,6 +96,24 @@ mudando só o tratamento de cor:
 Texto muda de `text-bone` para `text-ink`, já que o header é fixo/transparente
 sobre toda a página (inclusive fora do hero) e o fundo geral deixa de ser
 escuro.
+
+## Botões e inputs com borda/texto `bone`
+
+Vários controles usam `bone` como cor de borda/texto assumindo um fundo
+escuro atrás (ex.: botão outline "Entrar na Coleção" no hero, botão e input
+da Newsletter). Sobre o novo fundo claro isso ficaria invisível (texto/borda
+quase branco sobre quase branco). Esses controles invertem para usar `ink`
+como cor de borda/texto padrão, com o hover trocando para preenchimento
+`ink` + texto `bone` (em vez de preenchimento `bone` + texto `ink`, que era o
+padrão no tema escuro). Onde há um link de hover simples sem preenchimento
+(ex.: link do footer), usa `crimson` como cor de hover — é o "detalhe de
+destaque" que o token já reserva.
+
+## `app/layout.tsx`
+
+O `<body>` define o tema padrão da página (`bg-ink text-bone` hoje) — é o
+primeiro lugar a inverter (`bg-bone text-ink`), antes de ajustar cada seção
+que hoje sobrescreve esse fundo explicitamente com `bg-ink`.
 
 ## Tipografia
 
