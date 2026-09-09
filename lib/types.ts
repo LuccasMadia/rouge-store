@@ -4,4 +4,5 @@ export type Product = {
   priceCents: number;
   imageUrl: string;
   category: 'feminino' | 'masculino' | 'acessorios';
+  featured?: boolean;
 };

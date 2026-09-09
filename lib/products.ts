@@ -7,6 +7,7 @@ export const PRODUCTS: Product[] = [
     priceCents: 129900,
     imageUrl: '/images/trench-coat-editorial.jpg',
     category: 'feminino',
+    featured: true,
   },
   {
     id: 'vestido-slip-cetim',
@@ -28,6 +29,7 @@ export const PRODUCTS: Product[] = [
     priceCents: 89900,
     imageUrl: '/images/blazer-oversized.jpg',
     category: 'masculino',
+    featured: true,
   },
   {
     id: 'camisa-seda-manga-longa',
@@ -63,5 +65,6 @@ export const PRODUCTS: Product[] = [
     priceCents: 24900,
     imageUrl: '/images/colar-corrente-fina.jpg',
     category: 'acessorios',
+    featured: true,
   },
 ];

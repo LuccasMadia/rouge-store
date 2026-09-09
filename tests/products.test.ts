@@ -10,4 +10,14 @@ describe('PRODUCTS', () => {
       expect(product.priceCents).toBeGreaterThan(0);
     });
   });
+
+  it('has exactly one featured product per category', () => {
+    const categories = ['feminino', 'masculino', 'acessorios'] as const;
+    categories.forEach((category) => {
+      const featuredInCategory = PRODUCTS.filter(
+        (p) => p.category === category && p.featured,
+      );
+      expect(featuredInCategory).toHaveLength(1);
+    });
+  });
 });
