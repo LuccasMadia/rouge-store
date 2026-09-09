@@ -218,7 +218,7 @@ export function Manifesto({ storeName }: { storeName: string }) {
                   </span>
                 </h2>
                 <p className="mt-8 max-w-md text-sm leading-relaxed text-ink/80 md:text-base">
-                  Peças pensadas para quem veste sua fé com elegância, todos os dias.
+                  Peças pensadas para quem se veste com intenção, todos os dias.
                 </p>
                 <a
                   href="#colecao"

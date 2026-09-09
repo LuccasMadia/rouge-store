@@ -11,41 +11,29 @@ export function CategorySection({ category }: { category: Category }) {
   const featuredCollection = getCollectionForProduct(featured.id);
 
   return (
-    <section className="bg-bone px-8 py-24">
-      <div className="mx-auto mb-20 grid max-w-5xl items-start gap-12 md:grid-cols-2">
-        <div>
-          <h2 className="font-serif text-3xl tracking-wide text-ink md:text-4xl">
+    <section className="bg-bone">
+      <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[16/9]">
+        <img src={featured.imageUrl} alt={featured.name} className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 px-8 py-10 md:px-16 md:py-12">
+          <h2 className="font-serif text-3xl tracking-wide text-bone md:text-5xl">
             {category.title}
           </h2>
-          <p className="mt-3 text-smoke">{category.tagline}</p>
-        </div>
-        <div className="md:ml-auto md:max-w-xs">
-          <div className="relative aspect-[3/4] w-full">
-            <img
-              src={featured.imageUrl}
-              alt={featured.name}
-              className="absolute -top-[12%] left-1/2 h-[112%] w-[112%] -translate-x-1/2 object-cover object-top"
-              style={{
-                maskImage: 'linear-gradient(to bottom, transparent 0%, black 18%, black 100%)',
-                WebkitMaskImage:
-                  'linear-gradient(to bottom, transparent 0%, black 18%, black 100%)',
-              }}
-            />
-          </div>
-          <h3 className="mt-4 font-sans text-sm uppercase tracking-wide text-ink">
-            {featured.name}
-          </h3>
-          <div className="flex items-center gap-2">
-            <p className="text-sm text-smoke">{formatPrice(featured.priceCents)}</p>
+          <p className="mt-2 max-w-md text-bone/80">{category.tagline}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <h3 className="font-sans text-sm uppercase tracking-wide text-bone">
+              {featured.name}
+            </h3>
+            <span className="text-sm text-bone/80">{formatPrice(featured.priceCents)}</span>
             {featuredCollection && (
-              <span className="inline-block rounded-full bg-sand px-2 py-0.5 text-[10px] uppercase tracking-[0.15em] text-ink">
+              <span className="inline-block rounded-full border border-bone/40 px-2 py-0.5 text-[10px] uppercase tracking-[0.15em] text-bone">
                 {featuredCollection.title.replace('Coleção ', '')}
               </span>
             )}
           </div>
         </div>
       </div>
-      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 px-8 py-16 sm:grid-cols-2 lg:grid-cols-4">
         {rest.map((product) => {
           const collection = getCollectionForProduct(product.id);
           return (
