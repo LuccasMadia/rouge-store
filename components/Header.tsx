@@ -10,7 +10,7 @@ export function Header({ storeName }: { storeName: string }) {
   return (
     <header
       data-testid="site-header"
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-transparent px-8 py-6 text-bone backdrop-blur-sm"
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-transparent px-8 py-6 text-ink backdrop-blur-sm"
     >
       <span className="font-serif text-lg uppercase tracking-widest">{storeName}</span>
       <nav className="flex gap-8">
