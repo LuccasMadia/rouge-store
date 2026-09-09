@@ -1,4 +1,5 @@
 import { CATEGORIES } from '@/lib/categories';
+import { ImagePreloader } from '@/components/ImagePreloader';
 
 export function Categories() {
   return (
@@ -9,10 +10,10 @@ export function Categories() {
           href="#produtos"
           className="group relative block aspect-[3/4] overflow-hidden"
         >
-          <img
+          <ImagePreloader
             src={category.imageUrl}
             alt={category.title}
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            imgClassName="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <h3 className="absolute inset-0 flex items-center justify-center bg-ink/30 font-serif text-2xl uppercase tracking-[0.3em] text-bone transition-colors group-hover:bg-ink/10">
             {category.title}

@@ -1,5 +1,6 @@
 import { PRODUCTS } from '@/lib/products';
 import { formatPrice } from '@/lib/format';
+import { ImagePreloader } from '@/components/ImagePreloader';
 
 export function ProductGrid() {
   return (
@@ -11,10 +12,10 @@ export function ProductGrid() {
         {PRODUCTS.map((product) => (
           <article key={product.id} className="group">
             <div className="aspect-[4/5] overflow-hidden bg-smoke/10">
-              <img
+              <ImagePreloader
                 src={product.imageUrl}
                 alt={product.name}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                imgClassName="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
             <h3 className="mt-4 font-sans text-sm uppercase tracking-wide text-bone">
