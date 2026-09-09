@@ -24,7 +24,7 @@ export function CategorySection({ category }: { category: Category }) {
             <img
               src={featured.imageUrl}
               alt={featured.name}
-              className="absolute -top-[12%] left-1/2 h-[128%] w-[112%] -translate-x-1/2 object-cover object-top"
+              className="absolute -top-[12%] left-1/2 h-[112%] w-[112%] -translate-x-1/2 object-cover object-top"
               style={{
                 maskImage: 'linear-gradient(to bottom, transparent 0%, black 18%, black 100%)',
                 WebkitMaskImage:
