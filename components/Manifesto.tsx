@@ -42,7 +42,7 @@ type DoveConfig = {
 const DOVES: DoveConfig[] = [
   {
     wrapperClass: 'absolute left-[6%] top-[16%] h-10 w-20 md:h-14 md:w-28',
-    doveClass: 'text-bone/70 blur-[0.3px]',
+    doveClass: 'text-ink/70 blur-[0.3px]',
     baseRotate: -8,
     driftX: 26,
     driftY: -14,
@@ -51,7 +51,7 @@ const DOVES: DoveConfig[] = [
   },
   {
     wrapperClass: 'absolute right-[8%] top-[10%] h-7 w-14 md:h-10 md:w-20',
-    doveClass: 'text-bone/50 blur-[0.5px]',
+    doveClass: 'text-ink/50 blur-[0.5px]',
     baseRotate: 6,
     driftX: -20,
     driftY: 12,
@@ -60,7 +60,7 @@ const DOVES: DoveConfig[] = [
   },
   {
     wrapperClass: 'absolute left-[3%] top-[46%] h-6 w-12 md:h-8 md:w-16',
-    doveClass: 'text-bone/40 blur-[0.5px]',
+    doveClass: 'text-ink/40 blur-[0.5px]',
     flip: true,
     baseRotate: -4,
     driftX: 18,
@@ -70,7 +70,7 @@ const DOVES: DoveConfig[] = [
   },
   {
     wrapperClass: 'absolute bottom-[20%] left-[30%] h-5 w-10 md:h-6 md:w-12',
-    doveClass: 'text-bone/30 blur-[0.6px]',
+    doveClass: 'text-ink/30 blur-[0.6px]',
     baseRotate: 10,
     driftX: -24,
     driftY: -10,
@@ -79,7 +79,7 @@ const DOVES: DoveConfig[] = [
   },
   {
     wrapperClass: 'absolute bottom-[14%] right-[10%] h-8 w-16 md:h-11 md:w-[5.5rem]',
-    doveClass: 'text-bone/55 blur-[0.4px]',
+    doveClass: 'text-ink/55 blur-[0.4px]',
     flip: true,
     baseRotate: -10,
     driftX: -22,
@@ -113,8 +113,10 @@ export function Manifesto({ storeName }: { storeName: string }) {
         <motion.div className="absolute inset-0" style={{ scale: skyScale }}>
           <div
             data-testid="manifesto-bg"
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/images/hero-bg.png')" }}
+            className="absolute inset-0"
+            style={{
+              background: 'radial-gradient(ellipse at center, #f7f1e8 0%, #e3c9b4 55%, #d97a4f 100%)',
+            }}
           />
 
           <motion.div
@@ -153,12 +155,6 @@ export function Manifesto({ storeName }: { storeName: string }) {
               transition={{ duration: 47, repeat: Infinity, ease: 'easeInOut' }}
             />
           </div>
-
-          <div
-            aria-hidden="true"
-            className="absolute inset-0"
-            style={{ background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.22) 100%)' }}
-          />
 
           <motion.div className="absolute inset-0" style={{ opacity: skyOpacity }}>
             {DOVES.map((dove, index) => (
