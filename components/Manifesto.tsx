@@ -124,7 +124,8 @@ export function Manifesto({ storeName }: { storeName: string }) {
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: "url('/images/hero-clouds.png')",
-              mixBlendMode: 'screen',
+              filter: 'invert(88%) sepia(35%) saturate(600%) hue-rotate(340deg) brightness(0.92) contrast(0.95) blur(0px)',
+              mixBlendMode: 'multiply',
               opacity: skyOpacity,
               scale: 1.15,
             }}
@@ -132,7 +133,11 @@ export function Manifesto({ storeName }: { storeName: string }) {
               scale: [1.15, 1.25, 1.15],
               x: ['0%', '2.5%', '-1.5%', '0%'],
               y: ['0%', '-2%', '1.5%', '0%'],
-              filter: ['blur(0px)', 'blur(2px)', 'blur(0px)'],
+              filter: [
+                'invert(88%) sepia(35%) saturate(600%) hue-rotate(340deg) brightness(0.92) contrast(0.95) blur(0px)',
+                'invert(88%) sepia(35%) saturate(600%) hue-rotate(340deg) brightness(0.92) contrast(0.95) blur(2px)',
+                'invert(88%) sepia(35%) saturate(600%) hue-rotate(340deg) brightness(0.92) contrast(0.95) blur(0px)',
+              ],
             }}
             transition={{ duration: 34, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -142,7 +147,8 @@ export function Manifesto({ storeName }: { storeName: string }) {
               className="absolute inset-0 bg-cover bg-center"
               style={{
                 backgroundImage: "url('/images/hero-clouds.png')",
-                mixBlendMode: 'screen',
+                filter: 'invert(88%) sepia(35%) saturate(600%) hue-rotate(340deg) brightness(0.92) contrast(0.95) blur(1px)',
+                mixBlendMode: 'multiply',
                 opacity: skySecondaryOpacity,
                 scale: 1.25,
               }}
@@ -150,7 +156,11 @@ export function Manifesto({ storeName }: { storeName: string }) {
                 scale: [1.25, 1.35, 1.25],
                 x: ['0%', '-3%', '2%', '0%'],
                 y: ['0%', '2%', '-1.5%', '0%'],
-                filter: ['blur(1px)', 'blur(3px)', 'blur(1px)'],
+                filter: [
+                  'invert(88%) sepia(35%) saturate(600%) hue-rotate(340deg) brightness(0.92) contrast(0.95) blur(1px)',
+                  'invert(88%) sepia(35%) saturate(600%) hue-rotate(340deg) brightness(0.92) contrast(0.95) blur(3px)',
+                  'invert(88%) sepia(35%) saturate(600%) hue-rotate(340deg) brightness(0.92) contrast(0.95) blur(1px)',
+                ],
               }}
               transition={{ duration: 47, repeat: Infinity, ease: 'easeInOut' }}
             />
