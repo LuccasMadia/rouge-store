@@ -7,7 +7,8 @@ describe('Home page', () => {
     render(<Home />);
     expect(screen.getAllByText('ROUGE').length).toBeGreaterThanOrEqual(2);
     expect(screen.getByRole('heading', { name: 'Feminino' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /^coleção$/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /coleção inverno/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /coleção verão/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /sobre a rouge/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /receba as novidades/i })).toBeInTheDocument();
   });
